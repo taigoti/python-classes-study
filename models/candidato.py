@@ -28,3 +28,14 @@ class Candidato:
         self.trabalho_em_equipe = trabalho_em_equipe
         self.computador_proprio = computador_proprio
         self.conhecimentos = conhecimentos
+
+    def __str__(self) -> str:
+        return f"""
+            Candidato: {self.nome},
+            Matrícula: {self.matricula},
+            Email: {self.email},
+            Curso: {self.curso},
+            Semestre: {self.semestre}.
+            Turno disponível: {self.turno},
+            Conhecimentos: {self.conhecimentos}
+        """
