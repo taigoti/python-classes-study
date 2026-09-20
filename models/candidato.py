@@ -46,8 +46,8 @@ class Candidato:
     def _gerar_matricula(self) -> str:
         id_unico = random.randint(10000, 99999)
 
-        prefixo_nome = self.nome[:3]
-        prefixo_curso = self.curso[:2]
+        prefixo_nome = self.nome[:3].lower()
+        prefixo_curso = self.curso[:2].lower()
 
         return f"{prefixo_nome}{prefixo_curso}-{self.semestre}{id_unico}"
 
