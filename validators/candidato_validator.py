@@ -12,6 +12,7 @@ def validar_conhecimentos(candidato: object) -> set:
 
     return conhecimentos_compativeis, conhecimentos_faltantes
 
+
 def calcular_pontuacao(candidato, conhecimentos_compativeis) -> int:
   pontuacao = PONTUACAO['equipe'] + PONTUACAO['turno']
   pontuacao += len(conhecimentos_compativeis) * PONTUACAO['conhecimento']
@@ -20,7 +21,19 @@ def calcular_pontuacao(candidato, conhecimentos_compativeis) -> int:
     pontuacao += PONTUACAO['computador']
 
   return pontuacao
+b
 
+def validar_pontuacao(pontuacao: int) -> str:
+  if pontuacao >= 9:
+    return "Parabéns! Você foi APROVADO!"
+
+  elif pontuacao > 5 and pontuacao < 9:
+    return "Quase lá! Você ficou no BANCO DE TALENTOS, pois não atingiu todos os requisitos."
+  
+  else:
+    return "NÃO APROVADO. Sua pontuação foi menor que ou igual a 4."
+
+  
 def validar_desclassificacao(
     idade: int,
     trabalho_em_equipe: bool,

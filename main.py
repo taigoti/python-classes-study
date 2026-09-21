@@ -24,11 +24,4 @@ else:
 
   print(f"Pontuação final: {pontuacao}")
 
-  if pontuacao >= 9:
-    print("Parabéns! Você foi APROVADO!")
-
-  elif pontuacao > 5 and pontuacao < 9:
-    print("Quase lá! Você ficou no banco de talentos, pois não atingiu todos os requisitos.")
-  
-  else:
-    print("NÃO APROVADO. Sua pontuação foi menor que ou igual a 4.")
+  print(validar_pontuacao(pontuacao))
