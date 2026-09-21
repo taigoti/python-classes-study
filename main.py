@@ -1,11 +1,14 @@
 from models.candidato import Candidato
-from validators.candidato_validator import validar_desclassificacao, calcular_pontuacao
+from validators.candidato_validator import *
 
 candidato = Candidato.cadastrar()
 
+conhecimentos_compativeis, conhecimentos_faltantes = validar_conhecimentos(candidato)
+
 motivos = validar_desclassificacao(
     candidato.idade, candidato.trabalho_em_equipe,
-    conhecimentos_compativeis, candidato.turno)
+    conhecimentos_compativeis, conhecimentos_faltantes,
+    candidato.turno)
 
 print(candidato)
 
@@ -17,7 +20,7 @@ if motivos:
     print(f"-> {motivo}")
 
 else:
-  pontuacao = calcular_pontuacao()
+  pontuacao = calcular_pontuacao(candidato, conhecimentos_compativeis)
 
   print(f"Pontuação final: {pontuacao}")
 
