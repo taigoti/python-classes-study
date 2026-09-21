@@ -12,3 +12,11 @@ def validar_conhecimentos(candidato: object) -> set:
 
     return conhecimentos_compativeis, conhecimentos_faltantes
 
+def calcular_pontuacao(candidato, conhecimentos_compativeis) -> int:
+  pontuacao = PONTUACAO['equipe'] + PONTUACAO['turno']
+  pontuacao += len(conhecimentos_compativeis) * PONTUACAO['conhecimento']
+
+  if candidato.computador_proprio:
+    pontuacao += PONTUACAO['computador']
+
+  return pontuacao
