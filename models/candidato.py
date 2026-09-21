@@ -76,7 +76,7 @@ class Candidato:
             input("Você tem computador próprio? ")).lower() == "sim"
 
         conhecimentos_input = input("Insira seus conhecimentos separados por vírgula: ")
-        conhecimentos = set(conhecimentos_input.split(','))
+        conhecimentos = {conhecimento.strip() for conhecimento in conhecimentos_input.split(',') if conhecimento.strip()}
 
         return cls(
             nome = nome,
