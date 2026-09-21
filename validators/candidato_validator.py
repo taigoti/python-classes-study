@@ -21,7 +21,7 @@ def calcular_pontuacao(candidato, conhecimentos_compativeis) -> int:
     pontuacao += PONTUACAO['computador']
 
   return pontuacao
-b
+
 
 def validar_pontuacao(pontuacao: int) -> str:
   if pontuacao >= 9:
