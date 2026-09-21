@@ -67,7 +67,7 @@ class Candidato:
             print("Digite um email válido!")
 
         turno = str(
-            input("Turno disponível: ").strip())
+            input("Turno disponível: ").strip().lower())
 
         trabalho_em_equipe = str(
             input("Você aceita trabalhar em equipe? ")).lower() == "sim"
@@ -75,7 +75,7 @@ class Candidato:
         computador_proprio = str(
             input("Você tem computador próprio? ")).lower() == "sim"
 
-        conhecimentos_input = input("Insira seus conhecimentos separados por vírgula: ")
+        conhecimentos_input = input("Insira seus conhecimentos separados por vírgula: ").lower()
         conhecimentos = {conhecimento.strip() for conhecimento in conhecimentos_input.split(',') if conhecimento.strip()}
 
         return cls(
