@@ -20,3 +20,27 @@ def calcular_pontuacao(candidato, conhecimentos_compativeis) -> int:
     pontuacao += PONTUACAO['computador']
 
   return pontuacao
+
+def validar_desclassificacao(
+    idade: int,
+    trabalho_em_equipe: bool,
+    conhecimentos_compativeis: set,
+    conhecimentos_faltantes: set,
+    turno: str
+    ) -> list[str]:
+  
+  erros = []
+  
+  if idade < 16:
+    erros.append(MOTIVOS_DESAPROVACAO['idade'])
+
+  if not trabalho_em_equipe:
+    erros.append(MOTIVOS_DESAPROVACAO['equipe'])
+
+  if len(conhecimentos_compativeis) < 3:
+    erros.append(f"{MOTIVOS_DESAPROVACAO['conhecimentos']} {conhecimentos_faltantes}")
+
+  if turno not in TURNOS_DISPONIVEIS:
+    erros.append(MOTIVOS_DESAPROVACAO['turno'])
+  
+  return erros
