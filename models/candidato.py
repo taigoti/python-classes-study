@@ -44,12 +44,12 @@ class Candidato:
         """
 
     def _gerar_matricula(self) -> str:
-        id_unico = random.randint(10000, 99999)
+        id_unico = random.randint(100, 999)
 
-        prefixo_nome = self.nome[:3].lower()
-        prefixo_curso = self.curso[:2].lower()
+        prefixo_nome = self.nome[:1].lower()
+        prefixo_curso = self.curso[:1].lower()
 
-        return f"{prefixo_nome}{prefixo_curso}-{self.semestre}{id_unico}"
+        return f"{prefixo_nome}{prefixo_curso}{self.semestre}{id_unico}"
 
     @classmethod
     def cadastrar(cls):
