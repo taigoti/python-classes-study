@@ -8,7 +8,7 @@ class Inscricao:
         self.vaga = vaga
         self.inscricao = f"{candidato.matricula}-{vaga.id}"
         self.data_inscricao = datetime.now()
-        self.pontuacao = 0
+        self.pontuacao = self.calcular_pontuacao()
         self.status = self.validar_status()
 
     def validar_status(self) -> str:
@@ -18,3 +18,6 @@ class Inscricao:
             return "NÃO APROVADO"
         else:
             return "APROVADO"
+
+    def calcular_pontuacao(self) -> int:
+        return self.vaga.calcular_pontuacao(self.candidato)
