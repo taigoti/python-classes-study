@@ -12,7 +12,7 @@ candidato = Candidato(
     turno="tarde",
     trabalho_em_equipe=True,
     computador_proprio=True,
-    conhecimentos={"Python", "Java", "SQL"}
+    conhecimentos={"Python", "SQL"}
   )
 
 vaga = Vaga(
@@ -30,3 +30,10 @@ vaga = Vaga(
   )
 
 inscricao = Inscricao(candidato, vaga)
+
+
+if __name__ == "__main__":
+    print(f"Inscrição: {inscricao.inscricao}")
+    print(f"Data da inscrição: {inscricao.data_inscricao}")
+    print(f"Pontuação: {inscricao.pontuacao}")
+    print(f"Status: {inscricao.status}")
