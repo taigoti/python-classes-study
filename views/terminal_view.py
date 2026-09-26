@@ -24,7 +24,8 @@ def input_candidato() -> Candidato:
     computador_proprio = input(
         "Possui computador próprio? (s/n): ").strip().lower() == 'sim'
     
-    input_conhecimentos = input("Conhecimentos (separados por vírgula): ").strip().split(',')
+    input_conhecimentos = input(
+        "Conhecimentos (separados por vírgula): ").lower().strip().split(',')
     conhecimentos = {conhecimento.strip() for conhecimento in input_conhecimentos if conhecimento.strip()}
 
     return Candidato(
