@@ -4,7 +4,18 @@ from models.vaga import Vaga
 from views.terminal_view import input_candidato, print_inscricao
 
 
-candidato = input_candidato()
+#candidato = input_candidato()
+
+candidato = Candidato(
+    nome="João Silva",
+    idade=20,
+    curso="Engenharia de Software",
+    semestre=4,
+    email="joao.silva@example.com",
+    turno="manhã",
+    trabalho_em_equipe=False,
+    computador_proprio=True,
+    conhecimentos={"python", "java", "sql", "javascript"})
 
 vaga = Vaga(
     id=1,
