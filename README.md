@@ -1,14 +1,13 @@
 # Cadastro de Candidatos para Seleção Acadêmica
 
-Este projeto é uma aplicação simples em Python para realizar o cadastro de candidatos e avaliar sua elegibilidade para um projeto acadêmico. A lógica foi organizada em classes e módulos, utilizando estruturas como `set` para armazenar conhecimentos e `dict` para centralizar regras de pontuação e critérios de desclassificação.
+Este projeto em Python simula um processo de inscrição e avaliação de candidatos para uma vaga acadêmica. A estrutura atual foi organizada em classes e módulos, com uso de `set` para armazenar conhecimentos e `dict` para definir os critérios de pontuação de cada oportunidade.
 
 ## Objetivo
 
-O sistema coleta dados do candidato, valida requisitos mínimos e calcula uma pontuação final para decidir se ele:
+O sistema coleta dados do candidato, valida os requisitos mínimos da vaga, calcula uma pontuação final e decide se a inscrição será:
 
-- é aprovado;
-- entra na lista de espera;
-- é desclassificado.
+- `APROVADA`;
+- `NÃO APROVADA`.
 
 ## Estrutura do projeto
 
@@ -17,10 +16,10 @@ candidato/
 ├── main.py
 ├── models/
 │   ├── candidato.py
-│   └── constantes.py
-├── validators/
-│   └── candidato_validator.py
-└── README.md
+│   ├── vaga.py
+│   └── inscricao.py
+├── README.md
+└── .gitignore
 ```
 
 ## Descrição dos módulos
@@ -28,14 +27,13 @@ candidato/
 ### main.py
 Arquivo principal da aplicação. Ele:
 
-1. cria um candidato via `Candidato.cadastrar()`;
-2. valida os conhecimentos do candidato;
-3. verifica os motivos de desclassificação;
-4. calcula a pontuação final;
-5. imprime o resultado da seleção.
+1. instancia um objeto `Candidato`;
+2. cria uma `Vaga` com requisitos e pontuação;
+3. gera uma `Inscricao` vinculando candidato e vaga;
+4. exibe os dados e o status final da inscrição.
 
 ### models/candidato.py
-Define a classe `Candidato`, responsável por armazenar os dados do participante e pela coleta dos dados via entrada do terminal.
+Define a classe `Candidato`, responsável por armazenar os dados pessoais do participante e gerar a matrícula do candidato.
 
 Principais recursos:
 
@@ -43,42 +41,31 @@ Principais recursos:
 - `__init__`: inicializa os dados do candidato;
 - `__str__`: retorna uma representação textual do candidato;
 - `_gerar_matricula()`: gera uma matrícula com base no nome, no curso e no semestre;
-- `cadastrar()`: método de classe que coleta os dados do usuário pelo input.
+- `cadastrar()`: coleta os dados via entrada do terminal.
 
-O atributo `conhecimentos` é armazenado como `set`, o que evita duplicatas e permite operações de interseção, diferença e comparação com os requisitos exigidos.
+O atributo `conhecimentos` é armazenado como `set`, evitando duplicatas e permitindo comparações com os requisitos da vaga.
 
-### models/constantes.py
-Centraliza as regras do projeto em dicionários e conjuntos.
+### models/vaga.py
+Define a classe `Vaga`, que representa uma oportunidade disponível para inscrição.
 
-- `PONTUACAO`: define os pontos atribuídos por equipe, computador, turno e conhecimentos;
-- `CONHECIMENTOS_EXIGIDOS`: conjunto com os conhecimentos mínimos exigidos;
-- `TURNOS_DISPONIVEIS`: turnos permitidos;
-- `MOTIVOS_DESAPROVACAO`: mensagens utilizadas quando o candidato é recusado.
+Principais recursos:
 
-### validators/candidato_validator.py
-Contém as funções que validam o perfil do candidato.
+- `validar_requisitos(candidato)`: verifica se o candidato atende aos requisitos mínimos e retorna a lista de motivos de desclassificação;
+- `calcular_pontuacao(candidato)`: soma os pontos com base em trabalho em equipe, turno, conhecimentos e computador próprio;
+- `conhecimentos`: conjunto de requisitos exigidos pela vaga;
+- `turno`: turnos permitidos para a vaga;
+- `pontuacao`: dicionário com os valores usados no cálculo da pontuação.
 
-#### `validar_conhecimentos(candidato)`
-Compara os conhecimentos do candidato com os requisitos mínimos.
+### models/inscricao.py
+Define a classe `Inscricao`, responsável por relacionar um candidato a uma vaga.
 
-- `conhecimentos_compativeis`: interseção entre os conhecimentos do candidato e os exigidos;
-- `conhecimentos_faltantes`: diferença entre os requisitos exigidos e os conhecimentos do candidato.
+Principais recursos:
 
-#### `calcular_pontuacao(candidato, conhecimentos_compativeis)`
-Calcula a pontuação final com base em:
-
-- trabalho em equipe;
-- disponibilidade de turno;
-- número de conhecimentos compatíveis;
-- possuir computador próprio.
-
-#### `validar_desclassificacao(idade, trabalho_em_equipe, conhecimentos_compativeis, conhecimentos_faltantes, turno)`
-Verifica se o candidato deve ser rejeitado por algum motivo, como:
-
-- idade menor que 16 anos;
-- não aceita trabalho em equipe;
-- menos de 3 conhecimentos compatíveis;
-- turno não disponível para o projeto.
+- `inscricao`: identifica a inscrição no formato `matricula-vaga`;
+- `data_inscricao`: data e hora em que a inscrição foi criada;
+- `pontuacao`: pontuação calculada com base na vaga e no candidato;
+- `status`: indica se a inscrição foi aprovada ou não;
+- `validar_status()`: chama a validação da vaga e define o resultado final.
 
 ## Regras de seleção
 
@@ -86,18 +73,18 @@ As regras implementadas no projeto são:
 
 - candidato menor de 16 anos é desclassificado;
 - quem não aceita trabalhar em equipe é desclassificado;
-- devem existir pelo menos 3 conhecimentos compatíveis;
-- turno deve ser `manhã` ou `tarde`;
-- a pontuação final decide o resultado.
+- devem existir pelo menos 3 conhecimentos compatíveis com a vaga;
+- turno do candidato deve estar disponível para a oportunidade;
+- a pontuação final é calculada e utilizada para avaliar a inscrição.
 
 ## Fluxo da aplicação
 
 1. O usuário informa seus dados pessoais.
 2. O sistema cria um objeto `Candidato`.
-3. A aplicação compara os conhecimentos com a lista exigida.
-4. São verificadas as condições de desclassificação.
+3. A aplicação define uma `Vaga` com requisitos e critérios de pontuação.
+4. A inscrição compara os conhecimentos e valida os requisitos.
 5. A pontuação total é calculada.
-6. O programa exibe a classificação final.
+6. O programa exibe o status final da inscrição.
 
 ## Como executar
 
@@ -109,36 +96,43 @@ python main.py
 
 ## Exemplo de funcionamento
 
-O programa solicita as seguintes informações:
+O programa cria um candidato, uma vaga e uma inscrição de forma direta para demonstrar o fluxo do sistema.
 
-- Nome
-- Idade
-- Curso
-- Semestre
-- Email
-- Turno disponível
-- Trabalho em equipe
-- Possui computador próprio
-- Conhecimentos separados por vírgula
+### Dados de exemplo
 
-Depois, ele retorna uma classificação como:
+- Nome: João Silva
+- Idade: 20
+- Curso: Engenharia de Software
+- Semestre: 3
+- Email: joao.silva@me.com
+- Turno: tarde
+- Trabalho em equipe: Sim
+- Computador próprio: Sim
+- Conhecimentos: Python, SQL
 
-- `APROVADO`
-- `Banco de talentos`
-- `NÃO APROVADO`
+### Resultado esperado
+
+```text
+Inscrição: j e 3 123 - 1
+Data da inscrição: 2026-09-26 10:35:00
+Pontuação: 11
+Status: APROVADO
+```
+
+O exemplo acima representa a estrutura atual do projeto, em que a decisão é baseada em requisitos da vaga e pontuação acumulada.
 
 ## Observações
 
 Este projeto demonstra bem o uso de:
 
 - classes em Python;
-- estruturas `set` para manipulação de conhecimento;
-- dicionários para regras de negócio;
-- validação por funções independentes;
-- organização por módulos e pacotes.
+- estruturas `set` para manipulação de conhecimentos;
+- dicionários para regras de negócio e pontuação;
+- organização por módulos e pacotes;
+- modelagem orientada a objetos para candidatos, vagas e inscrições.
 
 ## Tecnologias utilizadas
 
 - Python 3
 - Estruturas nativas do Python (`set`, `dict`, `list`)
-- Entrada via terminal (`input()`)
+- Manipulação de datas com `datetime`
