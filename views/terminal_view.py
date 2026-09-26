@@ -19,12 +19,13 @@ def input_candidato() -> Candidato:
     turno = str(input("Turno disponível (manhã/tarde/noite): ").strip())
 
     trabalho_em_equipe = input(
-        "Trabalho em equipe? (s/n): ").strip().lower() == 'sim'
+        "Trabalho em equipe? (sim/não): ").strip().lower() == 'sim'
     
     computador_proprio = input(
-        "Possui computador próprio? (s/n): ").strip().lower() == 'sim'
+        "Possui computador próprio? (sim/não): ").strip().lower() == 'sim'
     
-    input_conhecimentos = input("Conhecimentos (separados por vírgula): ").strip().split(',')
+    input_conhecimentos = input(
+        "Conhecimentos (separados por vírgula): ").lower().strip().split(',')
     conhecimentos = {conhecimento.strip() for conhecimento in input_conhecimentos if conhecimento.strip()}
 
     return Candidato(
@@ -52,3 +53,4 @@ def print_inscricao(inscricao: Inscricao) -> None:
     print(f"Data da inscrição: {inscricao.data_inscricao}")
     print(f"Pontuação: {inscricao.pontuacao}")
     print(f"Status: {inscricao.status}")
+    print(inscricao.motivos)

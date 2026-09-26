@@ -8,13 +8,15 @@ class Inscricao:
         self.vaga = vaga
         self.inscricao = f"{candidato.matricula}-{vaga.id}"
         self.data_inscricao = datetime.now()
-        self.pontuacao = self.calcular_pontuacao()
+        self.motivos = self.validar_requisitos()
         self.status = self.validar_status()
+        self.pontuacao = self.calcular_pontuacao()
 
-    def validar_status(self) -> str:
-        motivos = self.vaga.validar_requisitos(self.candidato)
-
-        if motivos:
+    def validar_requisitos(self) -> list[str]:
+        return self.vaga.validar_requisitos(self.candidato)
+    
+    def validar_status(self) -> str:    
+        if self.motivos:
             return "NÃO APROVADO"
         else:
             return "APROVADO"
