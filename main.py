@@ -1,7 +1,7 @@
 from models.candidato import Candidato
 from models.inscricao import Inscricao
 from models.vaga import Vaga
-
+from views.terminal_view import print_inscricao
 
 candidato = Candidato(
     nome="João Silva",
@@ -33,7 +33,4 @@ inscricao = Inscricao(candidato, vaga)
 
 
 if __name__ == "__main__":
-    print(f"Inscrição: {inscricao.inscricao}")
-    print(f"Data da inscrição: {inscricao.data_inscricao}")
-    print(f"Pontuação: {inscricao.pontuacao}")
-    print(f"Status: {inscricao.status}")
+    print_inscricao(inscricao)

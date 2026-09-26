@@ -1,4 +1,6 @@
 from models.candidato import Candidato
+from models.inscricao import Inscricao
+
 
 def input_candidato() -> Candidato:
     nome = str(input("Nome: ").strip())
@@ -36,3 +38,17 @@ def input_candidato() -> Candidato:
         computador_proprio=computador_proprio,
         conhecimentos=conhecimentos
     )
+
+def print_inscricao(inscricao: Inscricao) -> None:
+    print("================================")
+
+    print("DADOS DO CANDIDATO")
+    print(inscricao.candidato)
+
+    print("================================")
+
+    print(f"Vaga: {inscricao.vaga.titulo}")
+    print(f"Inscrição: {inscricao.inscricao}")
+    print(f"Data da inscrição: {inscricao.data_inscricao}")
+    print(f"Pontuação: {inscricao.pontuacao}")
+    print(f"Status: {inscricao.status}")
