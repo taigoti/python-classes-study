@@ -5,7 +5,15 @@ def input_candidato() -> Candidato:
     idade = int(input("Idade: "))
     curso = str(input("Curso: ").strip())
     semestre = int(input("Semestre: "))
-    email = str(input("Email: ").strip())
+
+    while True:
+        email = str(input("Email: ").strip()).lower()
+
+        if '@' in email and '.' in email:
+            break
+
+        print("Digite um email válido!")
+
     turno = str(input("Turno disponível (manhã/tarde/noite): ").strip())
 
     trabalho_em_equipe = input(
