@@ -135,5 +135,4 @@ Este projeto demonstra bem o uso de:
 
 - Python 3
 - Estruturas nativas do Python (`set`, `dict`, `list`)
-- Entrada via terminal (`input()`)
 - Manipulação de datas com `datetime`
