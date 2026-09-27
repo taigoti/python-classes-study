@@ -1,7 +1,8 @@
 from models.candidato import Candidato
+from models.enums import Turno
 
 class Vaga:
-    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: set, pontuacao: dict):
+    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: list[Turno], pontuacao: dict):
         self.id = id
         self.titulo = titulo
         self.descricao = descricao
