@@ -1,8 +1,8 @@
 from models.candidato import Candidato
-from models.enums import Turno
+from models.enums import Turno, Pontuacao
 
 class Vaga:
-    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: list[Turno], pontuacao: dict):
+    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: list[Turno], pontuacao: list[Pontuacao]):
         self.id = id
         self.titulo = titulo
         self.descricao = descricao
@@ -31,16 +31,16 @@ class Vaga:
         pontuacao = 0
 
         if candidato.trabalho_em_equipe:
-            pontuacao += self.pontuacao['equipe']
+            pontuacao += self.pontuacao.EQUIPE
         
         if candidato.turno in self.turno:
-            pontuacao += self.pontuacao['turno']
+            pontuacao += self.pontuacao.TURNO
         
         pontuacao += len(
             candidato.conhecimentos.intersection(self.conhecimentos)
-            ) * self.pontuacao['conhecimento']
+            ) * self.pontuacao.CONHECIMENTO
         
         if candidato.computador_proprio:
-            pontuacao += self.pontuacao['computador_proprio']
+            pontuacao += self.pontuacao.COMPUTADOR_PROPRIO
         
         return pontuacao
