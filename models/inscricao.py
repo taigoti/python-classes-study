@@ -21,8 +21,8 @@ class Inscricao:
     
     def validar_status(self) -> str:    
         if self.motivos or self.pontuacao < 8:
-            return StatusInscricao.REPROVADO
+            return StatusInscricao.REPROVADO.value
         elif self.pontuacao >= 8 and self.pontuacao <= 11:
-            return StatusInscricao.BANCO_DE_TALENTOS
+            return StatusInscricao.BANCO_TALENTOS.value
         else:
-            return StatusInscricao.APROVADO
+            return StatusInscricao.APROVADO.value
