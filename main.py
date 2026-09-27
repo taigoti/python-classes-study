@@ -1,4 +1,3 @@
-from models.candidato import Candidato
 from models.inscricao import Inscricao
 from models.vaga import Vaga
 from views.terminal_view import input_candidato, print_inscricao

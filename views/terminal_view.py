@@ -53,4 +53,9 @@ def print_inscricao(inscricao: Inscricao) -> None:
     print(f"Data da inscrição: {inscricao.data_inscricao}")
     print(f"Pontuação: {inscricao.pontuacao}")
     print(f"Status: {inscricao.status}")
-    print(inscricao.motivos)
+
+    if inscricao.motivos:
+        print("Motivos de não aprovação:")
+        
+        for motivo in inscricao.motivos:
+            print(f"- {motivo}")
