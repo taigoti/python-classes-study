@@ -1,25 +1,30 @@
+from dataclasses import dataclass, field
 from datetime import datetime
 from models.candidato import Candidato
 from models.vaga import Vaga
+from models.enums import StatusInscricao
 
+
+@dataclass
 class Inscricao:
-    def __init__(self, candidato: Candidato, vaga: Vaga):
-        self.candidato = candidato
-        self.vaga = vaga
-        self.inscricao = f"{candidato.matricula}-{vaga.id}"
-        self.data_inscricao = datetime.now()
-        self.motivos = self.validar_requisitos()
-        self.status = self.validar_status()
-        self.pontuacao = self.calcular_pontuacao()
+    candidato: Candidato
+    vaga: Vaga
+    inscricao: str = field(init=False)
+    data_inscricao: datetime = field(default_factory=datetime.now)
+    motivos: list[str] = field(default_factory=list, init=False)
+    pontuacao: int = field(init=False)
+    status: StatusInscricao = field(init=False)
 
-    def validar_requisitos(self) -> list[str]:
-        return self.vaga.validar_requisitos(self.candidato)
-    
-    def validar_status(self) -> str:    
-        if self.motivos:
-            return "NÃO APROVADO"
+    def __post_init__(self):
+        self.inscricao = f"{self.candidato.matricula}-{self.vaga.id}"
+        self.motivos = self.vaga.validar_requisitos(self.candidato)
+        self.pontuacao = self.vaga.calcular_pontuacao(self.candidato)
+        self.status = self._validar_status()
+
+    def _validar_status(self) -> StatusInscricao:    
+        if self.motivos or self.pontuacao < 8:
+            return StatusInscricao.REPROVADO
+        elif self.pontuacao >= 8 and self.pontuacao <= 11:
+            return StatusInscricao.BANCO_TALENTOS
         else:
-            return "APROVADO"
-
-    def calcular_pontuacao(self) -> int:
-        return self.vaga.calcular_pontuacao(self.candidato)
+            return StatusInscricao.APROVADO

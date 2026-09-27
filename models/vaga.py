@@ -1,13 +1,15 @@
+from dataclasses import dataclass, field
 from models.candidato import Candidato
+from models.enums import Turno, Pontuacao
 
+@dataclass
 class Vaga:
-    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: set, pontuacao: dict):
-        self.id = id
-        self.titulo = titulo
-        self.descricao = descricao
-        self.conhecimentos = conhecimentos
-        self.turno = turno
-        self.pontuacao = pontuacao
+    id: str
+    titulo: str
+    descricao: str
+    conhecimentos: set[str] = field(default_factory=set)
+    turno: Turno = field(default_factory=lambda: Turno)
+    pontuacao: Pontuacao = field(default_factory=lambda: Pontuacao)
 
     def validar_requisitos(self, candidato: Candidato) -> list[str]:
         motivos = []
@@ -30,16 +32,16 @@ class Vaga:
         pontuacao = 0
 
         if candidato.trabalho_em_equipe:
-            pontuacao += self.pontuacao['equipe']
+            pontuacao += self.pontuacao.EQUIPE
         
         if candidato.turno in self.turno:
-            pontuacao += self.pontuacao['turno']
+            pontuacao += self.pontuacao.TURNO
         
         pontuacao += len(
             candidato.conhecimentos.intersection(self.conhecimentos)
-            ) * self.pontuacao['conhecimento']
+            ) * self.pontuacao.CONHECIMENTO
         
         if candidato.computador_proprio:
-            pontuacao += self.pontuacao['computador_proprio']
+            pontuacao += self.pontuacao.COMPUTADOR_PROPRIO
         
         return pontuacao
