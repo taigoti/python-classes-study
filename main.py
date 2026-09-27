@@ -7,7 +7,7 @@ from models.enums import Turno, Pontuacao
 candidato = input_candidato()
 
 vaga = Vaga(
-    id=1,
+    id="dstf",
     titulo="Desenvolvedor de Software",
     descricao="Vaga para desenvolvedor de software com experiência em Python e Java.",
     conhecimentos={"python", "java", "sql", "javascript"},

@@ -1,14 +1,15 @@
+from dataclasses import dataclass, field
 from models.candidato import Candidato
 from models.enums import Turno, Pontuacao
 
+@dataclass
 class Vaga:
-    def __init__(self, id: int, titulo: str, descricao: str, conhecimentos: set, turno: Turno, pontuacao: Pontuacao):
-        self.id = id
-        self.titulo = titulo
-        self.descricao = descricao
-        self.conhecimentos = conhecimentos
-        self.turno = turno
-        self.pontuacao = pontuacao
+    id: str
+    titulo: str
+    descricao: str
+    conhecimentos: set[str] = field(default_factory=set)
+    turno: Turno = field(default_factory=lambda: Turno)
+    pontuacao: Pontuacao = field(default_factory=lambda: Pontuacao)
 
     def validar_requisitos(self, candidato: Candidato) -> list[str]:
         motivos = []

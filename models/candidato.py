@@ -1,5 +1,5 @@
-import random
 from dataclasses import dataclass, field
+import random
 
 
 @dataclass
