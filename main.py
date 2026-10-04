@@ -2,7 +2,7 @@ from models.inscricao import Inscricao
 from models.vaga import Vaga
 from views.terminal_view import input_candidato, print_inscricao
 from models.enums import Turno, Pontuacao
-
+from persistence.json_storage import salvar_inscricao
 
 candidato = input_candidato()
 
@@ -16,7 +16,7 @@ vaga = Vaga(
 )
 
 inscricao = Inscricao(candidato, vaga)
-
+salvar_inscricao(inscricao)
 
 if __name__ == "__main__":
     print_inscricao(inscricao)

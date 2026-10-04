@@ -1,0 +1,13 @@
+[
+    {
+        "inscricao": "tc4150-dstf",
+        "candidato": "tc4510",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-04T01:18:01.972863",
+        "motivos": [
+            "Quantidade insuficiente de conhecimentos compatíveis"
+        ],
+        "pontuacao": 6,
+        "status": "NÃO APROVADO"
+    }
+]
