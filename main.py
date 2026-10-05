@@ -1,10 +1,12 @@
 from models.inscricao import Inscricao
 from models.vaga import Vaga
-from views.terminal_view import input_candidato, print_inscricao
 from models.enums import Turno, Pontuacao
+from views.terminal_view import input_candidato, print_inscricao
+from persistence.candidato_persistence import salvar_candidato
 from persistence.inscricao_persistence import salvar_inscricao
 
 candidato = input_candidato()
+salvar_candidato(candidato)
 
 vaga = Vaga(
     id="dstf",

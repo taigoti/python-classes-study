@@ -1,0 +1,11 @@
+[
+    {
+        "nome": "Tiago",
+        "idade": 19,
+        "curso": "cs",
+        "semestre": 5,
+        "email": "ti@ti.com",
+        "turno": "tarde",
+        "trabalho_em_equipe": true,
+        "computador_proprio": true,
+        "conhecimentos": 
