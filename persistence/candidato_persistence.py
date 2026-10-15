@@ -3,6 +3,7 @@ from pathlib import Path
 
 from models.candidato import Candidato
 
+
 DATA_PATH = Path("data/candidatos.json")
 
 def salvar_candidato(candidato_data: Candidato) -> None:
