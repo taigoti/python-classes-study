@@ -30,6 +30,7 @@ vaga = Vaga(
 )
 
 inscricao = Inscricao(candidato, vaga)
+salvar_candidato(candidato)
 salvar_inscricao(inscricao)
 salvar_vaga(vaga)
 

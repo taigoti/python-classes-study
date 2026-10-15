@@ -34,7 +34,7 @@ class Candidato:
             Turno disponível: {self.turno},
             Conhecimentos: {self.conhecimentos}
         """
-
+    @property
     def __dict__(self) -> dict:
         return {
             "nome": self.nome,
