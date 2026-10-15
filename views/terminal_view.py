@@ -1,3 +1,4 @@
+from models.vaga import Vaga
 from models.candidato import Candidato
 from models.inscricao import Inscricao
 
@@ -38,6 +39,25 @@ def input_candidato() -> Candidato:
         trabalho_em_equipe=trabalho_em_equipe,
         computador_proprio=computador_proprio,
         conhecimentos=conhecimentos
+    )
+
+def input_vaga() -> Vaga:
+    id = str(input("ID da vaga: ").strip())
+    titulo = str(input("Título da vaga: ").strip())
+    descricao = str(input("Descrição da vaga: ").strip())
+    
+    input_conhecimentos = input(
+        "Conhecimentos necessários (separados por vírgula): ").lower().strip().split(',')
+    conhecimentos = {conhecimento.strip() for conhecimento in input_conhecimentos if conhecimento.strip()}
+    
+    turno = str(input("Turno da vaga (manhã/tarde/noite): ").strip())
+    
+    return Vaga(
+        id=id,
+        titulo=titulo,
+        descricao=descricao,
+        conhecimentos=conhecimentos,
+        turno=turno
     )
 
 def print_inscricao(inscricao: Inscricao) -> None:
