@@ -11,6 +11,16 @@ class Vaga:
     turno: Turno = field(default_factory=lambda: Turno)
     pontuacao: Pontuacao = field(default_factory=lambda: Pontuacao)
 
+    @property
+    def __dict__(self):
+        return {
+            "id": self.id,
+            "titulo": self.titulo,
+            "descricao": self.descricao,
+            "conhecimentos": list(self.conhecimentos),
+            "turno": self.turno,
+        }
+    
     def validar_requisitos(self, candidato: Candidato) -> list[str]:
         motivos = []
 

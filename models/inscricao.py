@@ -28,3 +28,15 @@ class Inscricao:
             return StatusInscricao.BANCO_TALENTOS
         else:
             return StatusInscricao.APROVADO
+
+    @property
+    def __dict__(self) -> dict:
+        return {
+            "inscricao": self.inscricao,
+            "candidato": self.candidato.matricula,
+            "vaga": self.vaga.id,
+            "data_inscricao": self.data_inscricao.isoformat(),
+            "motivos": self.motivos,
+            "pontuacao": self.pontuacao,
+            "status": self.status.value
+        }

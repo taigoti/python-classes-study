@@ -1,0 +1,76 @@
+[
+    {
+        "inscricao": "tc4150-dstf",
+        "candidato": "tc4510",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-04T01:18:01.972863",
+        "motivos": [
+            "Quantidade insuficiente de conhecimentos compatíveis"
+        ],
+        "pontuacao": 6,
+        "status": "NÃO APROVADO"
+    },
+    {
+        "inscricao": "me4177-dstf",
+        "candidato": "me4676",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:24:09.341877",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4574-dstf",
+        "candidato": "me4991",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:24:20.261148",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4476-dstf",
+        "candidato": "me4768",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:24:30.654322",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4686-dstf",
+        "candidato": "me4297",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:26:36.140181",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4337-dstf",
+        "candidato": "me4987",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:27:35.265244",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4842-dstf",
+        "candidato": "me4891",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:28:00.137798",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    },
+    {
+        "inscricao": "me4963-dstf",
+        "candidato": "me4786",
+        "vaga": "dstf",
+        "data_inscricao": "2026-10-14T23:28:51.765651",
+        "motivos": [],
+        "pontuacao": 12,
+        "status": "APROVADO"
+    }
+]
